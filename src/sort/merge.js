@@ -1,8 +1,10 @@
-const arr = [98, 65, 4, 125];
+import { default as CONSTANTS } from './constants';
 
-const sortedArr = mergeSort(arr, 0, arr.length - 1);
+const arr = [...CONSTANTS.smallArray];
+let count = 0;
 
-console.log('merge sort', sortedArr);
+mergeSort(arr, 0, arr.length - 1);
+console.log('Merge sort takes', count, 'operations on array of length', arr.length);
 
 /**
  * Merge sort.
@@ -13,6 +15,8 @@ function merge(arr1, arr2) {
   let firstArrayIndex = 0;
   let secondArrayIndex = 0;
   while (firstArrayIndex < arr1.length && secondArrayIndex < arr2.length) {
+    //to count operations
+    ++count;
     if (arr1[firstArrayIndex] < arr2[secondArrayIndex]) {
       sortedArr.push(arr1[firstArrayIndex]);
       ++firstArrayIndex;
@@ -22,10 +26,14 @@ function merge(arr1, arr2) {
     }
   }
   while (firstArrayIndex !== arr1.length) {
+    //to count operations
+    ++count;
     sortedArr.push(arr1[firstArrayIndex]);
     ++firstArrayIndex;
   }
   while (secondArrayIndex !== arr2.length) {
+    //to count operations
+    ++count;
     sortedArr.push(arr2[secondArrayIndex]);
     ++secondArrayIndex;
   }
@@ -33,14 +41,17 @@ function merge(arr1, arr2) {
 }
 
 export default function mergeSort(arr) {
-  console.log('mergeSort', arr);
   const middle = Math.floor(arr.length / 2);
   const left = [];
   const right = [];
   for (let i = 0; i < arr.length; ++i) {
     if (i < middle) {
+      //to count operations
+      ++count;
       left.push(arr[i]);
     } else {
+      //to count operations
+      ++count;
       right.push(arr[i]);
     }
   }

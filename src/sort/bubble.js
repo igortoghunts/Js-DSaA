@@ -1,8 +1,10 @@
-const arr = [98, 65, 32, 21, 11, 9, 8, 7, 5, 2, 1, 0];
+import { default as CONSTANTS } from './constants';
 
-const sortedArr = bubbleSort(arr);
+const arr = [...CONSTANTS.smallArray];
+let count = 0;
 
-console.log('bubble sort', sortedArr);
+bubbleSort(arr);
+console.log('Bubble sort takes', count, 'operations on array of length', arr.length);
 
 /**
  * Bubble sort.
@@ -13,6 +15,8 @@ export default function bubbleSort(arr) {
   while (!isSorted) {
     isSorted = true;
     for (let i = 0, max = arr.length - 1; i < max; i++) {
+      //to count operations
+      ++count;
       if (arr[i] > arr[i + 1]) {
         arr[i] += arr[i + 1];
         arr[i + 1] = arr[i] - arr[i + 1];
@@ -21,6 +25,4 @@ export default function bubbleSort(arr) {
       }
     }
   }
-
-  return arr;
 }
